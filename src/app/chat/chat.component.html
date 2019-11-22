@@ -1,0 +1,16 @@
+<div style='position: fixed;bottom: 0;padding: 10px;right: 15px;text-align: center;'>
+    <h4>Chat</h4>
+
+  <div style='overflow: overlay;max-height:180px;background: #e6e6e3;border-radius: 8px;text-align: left;'>
+    <ul style='list-style:none;'>
+            <li *ngFor="let message of messages  " [ngStyle]="{'color': message.color}"  >
+            {{ message.msg }}
+            </li>
+    </ul>
+</div>
+
+    <div style='margin-top:15px'>
+            <input (keyup)='checkEnter($event)' type="text" [(ngModel)]='msgCurrent'>
+            <button (click)='send()' class='btn btn-info'>Envoyer</button>
+    </div>
+</div>

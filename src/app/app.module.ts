@@ -26,6 +26,7 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { dropDownDirective } from './directive/dropdown.directive';
 import { AuthGuard } from './AuthGuard';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AuthGuard } from './AuthGuard';
     PizzaFormComponent,
     IngredientFormComponent,
     RegisterComponent,
-    dropDownDirective
+    dropDownDirective,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
