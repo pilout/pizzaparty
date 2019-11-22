@@ -1,0 +1,59 @@
+
+    <!--
+        En utilisant la grille de Bootstrap, on veut afficher 4 pizzas par ligne
+        Chaque pizza sera affichée dans une card Bootstrap
+        On retrouvera dans cette card, une image de la pizza, son nom, son prix et un bouton pour la sélectionner
+    -->
+    <app-message></app-message>
+      
+        <h3>Filtre</h3>
+        <div class="row">
+            <div class="form-group">
+                <label>Nom :</label>
+                <input class="form-control" [(ngModel)]="pizzaNomFiltre" type="text" placeholder="Nom Pizza">
+            </div>
+            <div class="form-group">
+                <label>Prix min :</label>
+                <input class="form-control" [(ngModel)]="pizzaPrixMiFiltre" type="number" placeholder="prixMin">
+            </div>
+            <div class="form-group">
+                <label>Prix max :</label>
+                <input class="form-control"  [(ngModel)]="pizzaPrixMaFiltre" type="number" placeholder="prixMax">
+            </div>
+            <div class="form-group">
+            <label>Ordre :</label>
+            <select class="form-control" [(ngModel)]="pizzaOrdreFiltre">
+                <option value="asc">Moins chere en premier</option>
+                <option value="desc">Plus chere en premier</option>
+            </select>
+            </div>
+        </div>
+
+
+    <div class="row my-5">
+        <div class="col-3"
+             *ngFor="let pizza of pizzas|filter:pizzaNomFiltre:pizzaPrixMiFiltre:pizzaPrixMaFiltre:pizzaOrdreFiltre; index as i"
+             [class.selected]="pizza === selectedPizza">
+            <div class="card">
+                <img class="card-img-top" [src]="'assets/pizzas/' + pizza.image" [alt]="pizza.name">
+                <div class="card-body">
+                    <h2 class="card-title">{{ pizza.name }}</h2>
+                    <p class="card-text">Prix HT : {{ pizza.price|tax:0 }}</p>
+                    <p class="card-text">Prix TCC : {{ pizza.price|tax }}</p>
+                    <button (click)="onSelect(pizza)"
+                        class="btn btn-primary"
+                        [disabled]="pizza === selectedPizza">
+                        Sélectionner
+                    </button>
+                    <a style="margin-left:15px" class="btn btn-success" [routerLink]="['/pizzas/',pizza.id]">Voir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <app-pizza [pizza]="selectedPizza" (unselected)="unSelect($event)" (deleted)='delete($event)'></app-pizza>
+
+    <app-ingredient-list *ngIf="selectedPizza"  (unselected)="removeIngredient($event)" (selected)="selectIngredient($event)" [selectedPizza]="selectedPizza"  [ingredients]="ingredients"></app-ingredient-list>
+    
+    <app-author [user]="user"></app-author>

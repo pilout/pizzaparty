@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">{{ title }}</a>
+        <button class="navbar-toggler" type="button" (click)="toggleCollapseNavbar()" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"
+            [class.show]="isCollapsed" [ngClass]="{ show: isCollapsed }"
+            id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" routerLink="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"  routerLink="/pizzas">Pizzas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"  routerLink="/pizzas/create">Créer une pizza</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"  routerLink="/ingredient/create">Créer un ingredient</a>
+                </li>
+
+
+
+                <div *ngIf='user' class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" dropdownToggle>
+                          {{user.email}}
+                        </button>
+                        <div class="dropdown-menu">
+                          <a  (click)='logout()' class="dropdown-item" href="#">Se déconnecter</a>
+                        </div>
+                </div>
+
+                <div *ngIf='!user' class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" dropdownToggle>
+                          Authentification
+                        </button>
+                        <div class="dropdown-menu">
+                          <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="dropdown-item" href="#">Se connecter</a>
+                          <a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="dropdown-item" href="#">Créer un compte</a>
+                        </div>
+                </div>
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,6 @@
+<div *ngFor='let msg of messages' class="alert alert-{{msg.type}} fade show" role="alert">
+        <strong>{{msg.message}}</strong>.
+        <button (click)="removeMsg(msg)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>

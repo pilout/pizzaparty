@@ -1,0 +1,24 @@
+<div *ngIf="selectedPizza" class="row mt-5">
+    <div class="card text-center ">
+        <div class="card-body">
+            <h2 class="card-title">Name: {{ selectedPizza.name }}</h2>
+            <div>Id: {{ selectedPizza.id }}</div>
+            <div>Price: {{ selectedPizza.price }}</div>
+            <img width="150" [src]="'assets/pizzas/' + selectedPizza.image">
+            <input [(ngModel)]="selectedPizza.name" class="form-control">
+            <button class="btn btn-info" (click)="cancel()">Annuler</button>
+            <button class="btn btn-danger" (click)="delete(selectedPizza)">Supprimer</button>
+            <button (click)="onSave(selectedPizza)"class="btn btn-primary"> Sauvegarder </button>
+        </div>
+    </div>
+
+    <div *ngIf="selectedPizza.ingredients.length >0" class="col-3">
+        <div class="card" >
+                <h2 class="card-title">Ingredients supplémentaires</h2>
+            <div class="card-body" *ngFor="let ingredient of selectedPizza.ingredients; index as i">
+                <h2 class="card-title">{{ ingredient.name }}</h2>
+                <p class="card-text">{{ ingredient.price }} €</p>
+            </div>
+        </div>
+    </div>
+</div>

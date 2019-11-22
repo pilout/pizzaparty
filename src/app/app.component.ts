@@ -1,30 +1,40 @@
-import { Component } from '@angular/core';
-
-export class Pizza {
-  id: number;
-  name: string;
-  price: number;
-  image?: string;
-}
-
-const PIZZAS : Pizza[] = [
-  { id: 1, name: 'Reine', price: 12 },
-  { id: 2, name: '4 fromages', price: 13 },
-  { id: 3, name: 'Orientale', price: 11 },
-  { id: 4, name: 'Cannibale', price: 9 }
-];
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
-  templateUrl: "app.component.html"
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'Mon super site avec Angular';
-  pizza: Pizza = {
-    id: 1,
-    name: 'Reine',
-    price: 12,
-    image: "/assets/img/reine.jpg"
-  };
-  pizzas :Pizza[] = PIZZAS;
+export class AppComponent implements OnInit {
+  loading :boolean = false;
+  routerEvents: Subscription;
+  user : firebase.User;
+  constructor(private router: Router, private fireBase : AngularFireAuth) { }
+
+  ngOnInit() {
+    this.routerEvents= this.router.events.subscribe((event: RouterEvent)=>{
+
+      if(event instanceof NavigationStart)
+      this.loading = true;
+
+      
+      if(event instanceof NavigationEnd ||event instanceof NavigationCancel || event instanceof NavigationError  )
+      this.loading = false;
+      
+    });
+
+    this.fireBase.authState.subscribe(u=> {this.user = u;});
+
+
+  }
+
+  ngDestroy(){
+      this.routerEvents.unsubscribe();
+  }
+
+  
+  title = 'Mon super site';
+
 }

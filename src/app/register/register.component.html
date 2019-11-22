@@ -1,0 +1,41 @@
+  <h2 *ngIf="type=='register'">Enregistrement des utilisateurs</h2>
+  <h2 *ngIf="type=='login'">Connexion</h2>
+
+<form (ngSubmit)="save()" [formGroup]="userForm">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" formControlName="email">
+    </div>
+
+    <div *ngIf="userForm.get('email').dirty && !userForm.get('email').valid">
+        Nom déja pris ou invalide
+    </div>
+
+
+    
+    <div formGroupName="passwordForm">
+        <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" formControlName="password">
+        </div>
+
+        <div *ngIf="userForm.controls.passwordForm.get('password').dirty && !userForm.controls.passwordForm.get('password').valid">
+                password requis.
+        </div>
+
+        <div *ngIf="type=='register'"  class="form-group">
+                <label for="confirm">Confirmez le mot de passe</label>
+                <input type="password" name="confirm" formControlName="confirm">
+        </div>
+
+        <div *ngIf="type=='register' && userForm.controls.passwordForm.get('confirm').dirty && userForm.controls.passwordForm.hasError('notMatching')">
+                les mot de passes ne correspondents pas
+        </div>
+    </div>
+
+    <div class='text-danger'>
+        {{error}}
+    </div>
+
+    <button  [disabled]='!userForm.valid'  class="btn btn-primary">S'enregister</button>
+</form>

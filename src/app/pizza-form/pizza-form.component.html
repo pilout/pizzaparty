@@ -1,0 +1,31 @@
+<h2></h2>
+
+<form (ngSubmit)="save(form)" #form='ngForm'>
+        <div class="form-group">
+                <label for="nomPizza">Nom Pizza</label>
+                <input required 
+                minlength="4"
+                type="text" 
+                class="form-control"
+                name="nomPizza"
+                #name ='ngModel'
+                [(ngModel)]='pizza.name' 
+                [class.is-invalide]='name.dirty && name.invalid'
+                placeholder="Nom">
+        </div>
+
+            <div *ngIf='name.dirty && name.invalid'>
+                4 Caracteres minimum 
+            </div>
+
+        <div  class="form-group">
+                <label for="pricePizza">Prix Pizza</label>
+                <input required  
+                type="number" 
+                class="form-control" 
+                name="pricePizza" 
+                [(ngModel)]='pizza.price'
+                 placeholder="prix">
+        </div>
+        <button [disabled]='form.invalid'>Créer la pizza</button>
+</form>

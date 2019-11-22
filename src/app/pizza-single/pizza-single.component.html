@@ -1,0 +1,13 @@
+<input type ='text' #toto>
+<div *ngIf='pizza' class="row">
+        <div class='col-6'>
+            <h2>{{pizza.name}}</h2>
+            {{pizza.price}} €
+        </div>
+        <div class='col-6'>
+                <img [src]="'assets/pizzas/'+ pizza.image">
+        </div>
+
+        <a [routerLink]="'/pizzas/'+ (pizza.id-1)">Pizza precedente</a>
+        <a [routerLink]="'/pizzas/'+ (pizza.id+1)" >Pizza suivante</a>
+</div>

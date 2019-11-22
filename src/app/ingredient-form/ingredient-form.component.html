@@ -1,0 +1,27 @@
+
+    <h2>Créer un ingredient</h2>
+<form (ngSubmit)="save()" [formGroup]="ingredientForm">
+    <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="name" name="name" formControlName="name">
+    </div>
+
+    <div *ngIf="ingredientForm.get('name').dirty  && ingredientForm.get('name').status === 'INVALID'">
+            Nom déja existant.
+    </div>
+
+    <div class="form-group">
+            <label for="price">Prix</label>
+            <input type="price" name="price" formControlName="price">
+    </div>
+
+    <div class="form-group">
+            <label for="weight">Poids</label>
+            <input type="number" name="weight" formControlName="weight">
+    </div>
+
+
+
+
+    <button [disabled]="!ingredientForm.valid" class="btn btn-primary">Ajouter un ingredient</button>
+</form>

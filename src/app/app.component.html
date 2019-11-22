@@ -1,8 +1,8 @@
+<!-- Affiche une navbar Bootstrap -->
+<app-menu [user]="user" [title]="title"></app-menu>
 
-    <h1>{{ title }}</h1>
-    <h2>{{ pizza.name }}</h2>
-    <div><label>id: </label>{{ pizza.id }}</div> 
-    <div><label>price: </label>{{ pizza.price }}</div>
-    <img  [src]="pizza.image">
-    <input [(ngModel)]="pizza.name">
-  
+<div  class="container">
+    <div class="spinner-border" role="status" *ngIf="loading"></div>
+    <router-outlet *ngIf='!loading'></router-outlet>
+</div>
+

@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "lastName": "dede",
+      "firstName": "dede",
+      "birthdate": "",
+      "avatar": "",
+      "password": "Newxtreme1",
+      "id": 1
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Tomate",
+      "image": "tomate.png",
+      "weight": 20,
+      "price": 0.5,
+      "id": 1
+    },
+    {
+      "name": "Avocat",
+      "image": "avocat.png",
+      "weight": 30,
+      "price": 1.5,
+      "id": 1
+    }
+  ],
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Reine",
+      "price": 12,
+      "image": "reine.jpg",
+      "ingredients": []
+    },
+    {
+      "id": 2,
+      "name": "4 fromages",
+      "price": 13,
+      "image": "4-fromages.jpg",
+      "ingredients": []
+    },
+    {
+      "id": 3,
+      "name": "Orientale",
+      "price": 11,
+      "image": "orientale.jpg",
+      "ingredients": []
+    },
+    {
+      "id": 4,
+      "name": "Cannibale",
+      "price": 11,
+      "image": "cannibale.jpg",
+      "ingredients": []
+    }
+  ]
+}
