@@ -23,7 +23,7 @@
     "@types/socket.io-client": "^1.4.32",
     "angular-cli-ghpages": "^0.6.0",
     "bootstrap": "^4.3.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^7.5.0",
     "rxjs": "~6.4.0",
     "socket.io": "^2.3.0",
